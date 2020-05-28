@@ -5,11 +5,12 @@ using AutoMapper;
 using leave_management.Contracts;
 using leave_management.Data;
 using leave_management.Models;
+using leave_management.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace leave_management.Controllers
 {
-    public class LeaveTypeController : Controller
+    public class  LeaveTypeController : BaseController
     {
         private readonly ILeaveTypeRepository _repository;
         private readonly IMapper _mapper;
@@ -19,13 +20,17 @@ namespace leave_management.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-
-        // GET
+        
         public async Task<IActionResult> Index()
         {
-            var leaveTypes = await _repository.FindAll();
-            var model = _mapper.Map<List<LeaveType>, List<DetailsLeaveTypeVm>>(leaveTypes.ToList());
+            var leaveTypes = (await _repository.FindAll()).ToList();
+            var model = _mapper.Map<List<LeaveType>, List<DetailsLeaveTypeVm>>(leaveTypes);
             return View(model);
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
         }
     }
 }
