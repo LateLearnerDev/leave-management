@@ -2,14 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using leave_management.Data;
-using leave_management.Entities.Repositories;
-using leave_management.Entities.Repositories.Interfaces;
-using leave_management.Entities.Services;
-using leave_management.Entities.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services.Data;
+using Services.Services.Repositories;
+using Services.Services.Repositories.Interfaces;
+using Services.Services.Services;
+using Services.Services.Services.Interfaces;
 
 namespace leave_management
 {

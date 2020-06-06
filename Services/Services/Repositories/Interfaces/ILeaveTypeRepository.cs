@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using leave_management.Data;
+using Services.Data;
 
-namespace leave_management.Entities.Repositories.Interfaces
+namespace Services.Services.Repositories.Interfaces
 {
     public interface ILeaveTypeRepository
     {

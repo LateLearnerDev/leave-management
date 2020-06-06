@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace leave_management.Data
+namespace Services.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

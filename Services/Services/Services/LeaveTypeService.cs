@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using leave_management.Data;
-using leave_management.Entities.Repositories.Interfaces;
-using leave_management.Entities.Services.Interfaces;
+using Services.Data;
+using Services.Services.Repositories.Interfaces;
+using Services.Services.Services.Interfaces;
 
-namespace leave_management.Entities.Services
+namespace Services.Services.Services
 {
     public class LeaveTypeService : ILeaveTypeService
     {

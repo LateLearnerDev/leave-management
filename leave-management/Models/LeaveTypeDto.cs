@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using leave_management.Data;
+using Services.Data;
 
 namespace leave_management.Models
 {

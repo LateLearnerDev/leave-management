@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace leave_management.Data.Migrations
+namespace Services.Data.Migrations
 {
     public partial class AddedEmployeeDataPoints : Migration
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace leave_management.Data
+namespace Services.Data
 {
     public class LeaveType
     {

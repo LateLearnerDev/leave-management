@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 
-namespace leave_management.Data
+namespace Services.Data
 {
     public class Employee : IdentityUser
     {

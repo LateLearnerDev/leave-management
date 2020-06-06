@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using leave_management.Data;
-using leave_management.Entities.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Services.Data;
+using Services.Services.Repositories.Interfaces;
 
-namespace leave_management.Entities.Repositories
+namespace Services.Services.Repositories
 {
     public class LeaveTypeRepository : ILeaveTypeRepository
     {

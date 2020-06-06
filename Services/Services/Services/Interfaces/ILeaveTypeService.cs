@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using leave_management.Data;
+using Services.Data;
 
-namespace leave_management.Entities.Services.Interfaces
+namespace Services.Services.Services.Interfaces
 {
     public interface ILeaveTypeService
     {
