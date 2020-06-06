@@ -1,11 +1,11 @@
-﻿using leave_management.Contracts;
-using leave_management.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using leave_management.Data;
+using leave_management.Entities.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace leave_management.Repository
+namespace leave_management.Entities.Repositories
 {
     public class LeaveTypeRepository : ILeaveTypeRepository
     {
@@ -16,7 +16,7 @@ namespace leave_management.Repository
             _db = db;
         }
 
-        public async Task<ICollection<LeaveType>> FindAll()
+        public async Task<IEnumerable<LeaveType>> FindAll()
         {
             return await _db.LeaveTypes.ToListAsync();
         }
@@ -28,19 +28,17 @@ namespace leave_management.Repository
             return entity;
         }
 
-        public LeaveType Delete(LeaveType entity)
+        public async Task<bool> Delete(LeaveType entity)
         {
-            var entityToBeDeleted = entity;
-            _db.LeaveTypes.Remove(entity);
-            return entityToBeDeleted;
+            return await Save();
         }
 
         public async Task<LeaveType> FindById(int id)
         {
             return await _db.LeaveTypes.FirstOrDefaultAsync(x => x.Id == id);
-        }        
+        }
 
-        public async Task<bool> Save()
+        private async Task<bool> Save()
         {
             return await _db.SaveChangesAsync() > 0;
         }

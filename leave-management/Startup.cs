@@ -1,15 +1,15 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using leave_management.Data;
+using leave_management.Entities.Repositories;
+using leave_management.Entities.Repositories.Interfaces;
+using leave_management.Entities.Services;
+using leave_management.Entities.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using leave_management.Contracts;
-using leave_management.Mapping;
-using leave_management.Repository;
 
 namespace leave_management
 {
@@ -28,16 +28,24 @@ namespace leave_management
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
-            services.AddScoped<ILeaveHistoryRepository, LeaveHistoryRepository>();
-            services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
-
-            services.AddAutoMapper(typeof(Maps));
+            
+            SetUpLeaveServices(services);
             
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+        }
+
+        private static void SetUpLeaveServices(IServiceCollection services)
+        {
+            services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
+            services.AddScoped<ILeaveTypeService, LeaveTypeService>();
+            
+            services.AddScoped<ILeaveHistoryRepository, LeaveHistoryRepository>();
+            
+            services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

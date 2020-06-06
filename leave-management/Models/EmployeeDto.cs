@@ -2,7 +2,7 @@ using System;
 
 namespace leave_management.Models
 {
-    public class EmployeeVm
+    public class EmployeeDto
     {
         public int Id { get; set; }
         public string UserName { get; set; }

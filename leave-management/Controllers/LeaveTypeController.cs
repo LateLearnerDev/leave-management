@@ -1,36 +1,69 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using leave_management.Contracts;
-using leave_management.Data;
+using leave_management.Entities.Services.Interfaces;
 using leave_management.Models;
 using leave_management.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace leave_management.Controllers
 {
-    public class  LeaveTypeController : BaseController
+    public class LeaveTypeController : BaseController
     {
-        private readonly ILeaveTypeRepository _repository;
-        private readonly IMapper _mapper;
+        private readonly ILeaveTypeService _service;
 
-        public LeaveTypeController(ILeaveTypeRepository repository, IMapper mapper)
+        public LeaveTypeController(ILeaveTypeService service)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _service = service;
         }
         
         public async Task<IActionResult> Index()
         {
-            var leaveTypes = (await _repository.FindAll()).ToList();
-            var model = _mapper.Map<List<LeaveType>, List<DetailsLeaveTypeVm>>(leaveTypes);
+            var leaveTypes = (await _service.FindAll()).ToList();
+            var model = leaveTypes.Select(LeaveTypeDto.CreateFrom);
             return View(model);
         }
 
-        public async Task<IActionResult> Create()
+        public ActionResult Edit()
         {
             return View();
+        }
+        
+        public ActionResult Details()
+        {
+            return View();
+        }
+        
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(LeaveTypeDto leaveTypeDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View(leaveTypeDto);
+
+                var leaveType = await _service.Create(leaveTypeDto.Name, leaveTypeDto.IsActive);
+                if (leaveType != null) 
+                    return RedirectToAction(nameof(Index));
+                
+                ModelState.AddModelError("", "Something went wrong...");
+                return View(leaveTypeDto);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

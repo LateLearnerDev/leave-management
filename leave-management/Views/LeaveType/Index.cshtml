@@ -1,4 +1,4 @@
-@model IEnumerable<leave_management.Models.DetailsLeaveTypeVm>
+@model IEnumerable<leave_management.Models.LeaveTypeDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,12 +6,16 @@
 
 <h1>Leave Types</h1>
 
-<p asp-action="Create">Create New</p>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
     <tr>
         <th>@Html.DisplayNameFor(model => model.Name)</th>        
-        <th>@Html.DisplayNameFor(model => model.DateCreated)</th>        
+        <th>@Html.DisplayNameFor(model => model.IsActive)</th>        
+        <th>@Html.DisplayNameFor(model => model.DateCreated)</th>  
+        <th></th>
     </tr>    
     </thead>
     <tbody>
@@ -19,10 +23,13 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => leaveType.Name)</td>
+                <td>@Html.DisplayFor(modelItem => leaveType.IsActive)</td>
                 <td>@Html.DisplayFor(modelItem => leaveType.DateCreated)</td>
-            </tr>
-            <tr>
-                <td></td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@leaveType.Id">Edit</a>
+                    <a asp-action="Details" asp-route-id="@leaveType.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@leaveType.Id">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace leave_management.Models
 {
-    public class LeaveHistoryVm
+    public class LeaveHistoryDto
     {
         public int Id { get; set; }
         [Required]
@@ -15,14 +15,14 @@ namespace leave_management.Models
         public bool? Approved { get; set; }
         public DateTime DateTimeRequested { get; set; }
         
-        public EmployeeVm RequestingEmployee { get; set; }
+        public EmployeeDto RequestingEmployee { get; set; }
         public string RequestingEmployedId { get; set; }
         
-        public DetailsLeaveTypeVm LeaveType { get; set; }
+        public LeaveTypeDto LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
         public IEnumerable<SelectListItem> LeaveTypes { get; set; }
         
-        public EmployeeVm ApprovedBy { get; set; }
+        public EmployeeDto ApprovedBy { get; set; }
         public string ApprovedById { get; set; }
     }
 }

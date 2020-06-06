@@ -1,12 +1,10 @@
-﻿using leave_management.Contracts;
-using leave_management.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using leave_management.Data;
+using leave_management.Entities.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace leave_management.Repository
+namespace leave_management.Entities.Repositories
 {
     public class LeaveAllocationRepository : ILeaveAllocationRepository
     {
@@ -16,7 +14,7 @@ namespace leave_management.Repository
         {
             _db = db;
         }
-        public async Task<ICollection<LeaveAllocation>> FindAll()
+        public async Task<IEnumerable<LeaveAllocation>> FindAll()
         {
             return await _db.LeaveAllocations.ToListAsync();
         }
