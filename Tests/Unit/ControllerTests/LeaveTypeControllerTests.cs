@@ -32,7 +32,7 @@ namespace Tests.Unit.ControllerTests
         }
         
         [Test]
-        public async Task Create_WhenCreateServiceReturnsNull_ReturnsCreateViewWithModel()
+        public async Task Create_WhenCreateServiceReturnsNull_ReturnsViewWithLeaveTypeDtoModel()
         {
             // Arrange
             var leaveTypeDto = new LeaveTypeDto {Name = "Name", IsActive = true};
@@ -43,10 +43,10 @@ namespace Tests.Unit.ControllerTests
             var controller = new LeaveTypeController(service.Object);
 
             // Act
-            var result = await controller.Create(leaveTypeDto) as RedirectToActionResult;
+            var result = await controller.Create(leaveTypeDto) as ViewResult;
 
             // Assert
-            Assert.AreEqual("Index", result.ActionName);
+            Assert.AreEqual(leaveTypeDto, result.Model);
         }
     }
 }

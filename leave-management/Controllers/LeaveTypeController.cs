@@ -91,9 +91,14 @@ namespace leave_management.Controllers
             return View();
         }
         
-        public ActionResult Delete()
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var isDeleted = await _service.Delete(id);
+            if (isDeleted)
+                return RedirectToAction(nameof(Index));
+            
+            ModelState.AddModelError("", "Something went wrong...");
+            return RedirectToAction(nameof(Index));
         }
 
         
